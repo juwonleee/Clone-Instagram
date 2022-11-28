@@ -498,4 +498,6 @@ public class HomeFront {
         homeFront.frame.setVisible(true);
     }
 
+    //주석
+
 }
