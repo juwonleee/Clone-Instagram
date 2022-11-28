@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/DB_instagram.iml" filepath="$PROJECT_DIR$/DB_instagram.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Clone-Instagram.iml" filepath="$PROJECT_DIR$/Clone-Instagram.iml" />
     </modules>
   </component>
 </project>
