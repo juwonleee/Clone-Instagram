@@ -26,16 +26,16 @@ public class EachArticle extends JPanel {
     JPanel bottom_top_icon_panel = new JPanel(new BorderLayout());
     JPanel bottom_top_likeCnt_panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 
-    ImageIcon profilImg = new ImageIcon("image/harry_potter_profil_circle.png");
-    ImageIcon moreImg = new ImageIcon("image/icon_board_more.png");
-    ImageIcon mainImg = new ImageIcon("image/harry_potter.png");
-    ImageIcon likeImg = new ImageIcon("image/icon_like.png");
-    ImageIcon likeFillImg = new ImageIcon("image/icon_like_fill.png");
-    ImageIcon commentImg = new ImageIcon("image/icon_comment.png");
-    ImageIcon messageImg = new ImageIcon("image/icon_dm.png");
-    ImageIcon bookmarkImg = new ImageIcon("image/icon_bookmark.png");
-    ImageIcon profilEmptyImg = new ImageIcon("image/profil_empty.jpg");
-    ImageIcon commentEmojiImg = new ImageIcon("image/icon_comment_emoji.png");
+    ImageIcon profilImg = new ImageIcon("front/instagram_clone/image/harry_potter_profil_circle.png");
+    ImageIcon moreImg = new ImageIcon("front/instagram_clone/image/icon_board_more.png");
+    ImageIcon mainImg = new ImageIcon("front/instagram_clone/image/harry_potter.png");
+    ImageIcon likeImg = new ImageIcon("front/instagram_clone/image/icon_like.png");
+    ImageIcon likeFillImg = new ImageIcon("front/instagram_clone/image/icon_like_fill.png");
+    ImageIcon commentImg = new ImageIcon("front/instagram_clone/image/icon_comment.png");
+    ImageIcon messageImg = new ImageIcon("front/instagram_clone/image/icon_dm.png");
+    ImageIcon bookmarkImg = new ImageIcon("front/instagram_clone/image/icon_bookmark.png");
+    ImageIcon profilEmptyImg = new ImageIcon("front/instagram_clone/image/profil_empty.jpg");
+    ImageIcon commentEmojiImg = new ImageIcon("front/instagram_clone/image/icon_comment_emoji.png");
 
     JLabel profilLabel;
     JLabel moreLabel;
