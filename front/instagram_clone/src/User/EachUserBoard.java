@@ -24,7 +24,6 @@ public class EachUserBoard extends JPanel {
     JPanel headerBottomPanel = new JPanel(new BorderLayout());
     JPanel contentPanel = new JPanel(new BorderLayout());
 
-    JPanel profilImgPanel = new JPanel(new BorderLayout());
     JLabel profilImgLabel = new JLabel();
 
     JPanel profilInfoPanel = new JPanel(new BorderLayout());
