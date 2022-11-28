@@ -4,6 +4,7 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -100,7 +101,9 @@ public class Home extends JFrame {
         center.setLayout(new BoxLayout(center, BoxLayout.Y_AXIS));
 
         center.add(new EachArticle());
+        center.add(new Line());
         center.add(new EachArticle());
+        center.add(new Line());
         center.add(new EachArticle());
     }
 
@@ -413,7 +416,11 @@ public class Home extends JFrame {
         panel_menuProfil.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
+                getContentPane().removeAll();
+                getContentPane().add(menuPanel, BorderLayout.WEST);
+                getContentPane().add(new EachUserBoard(1), BorderLayout.CENTER);
+                revalidate();
+                repaint();
             }
 
             @Override

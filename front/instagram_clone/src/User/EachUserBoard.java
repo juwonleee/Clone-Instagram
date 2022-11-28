@@ -30,7 +30,7 @@ public class EachUserBoard extends JPanel {
     JPanel profilInfoCenterPanel = new JPanel(new BorderLayout());
     JPanel profilInfoBottomPanel = new JPanel(new BorderLayout());
 
-    ImageIcon profilImg = new ImageIcon("front/instagram_clone/image/harry_potter_profil_circle.png");
+    ImageIcon profilImg = new ImageIcon("image/harry_potter_profil_circle.png");
 
     //975
 
