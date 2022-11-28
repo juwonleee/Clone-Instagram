@@ -1,5 +1,7 @@
 package home;
 
+import User.EachUserBoard;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
@@ -103,7 +105,7 @@ public class HomeFront {
 
     private void setStoryPanel() {
         storyPanel.setPreferredSize(new Dimension(300, screenSize.height));
-        storyPanel.setBackground(Color.white);
+        storyPanel.setBackground(new Color(250,250,250));
         storyPanel.add(storyLabel, BorderLayout.CENTER);
     }
 
@@ -114,16 +116,16 @@ public class HomeFront {
         boardScroll.getVerticalScrollBar().setUI(new MyScrollBarUI());
 
         boardPanel.setPreferredSize(new Dimension(1330, screenSize.height));
-        boardPanel.setBackground(Color.white);
+        boardPanel.setBackground(new Color(250,250,250));
         JPanel tempWest = new JPanel();
         tempWest.setPreferredSize(new Dimension(430, screenSize.height));
-        tempWest.setBackground(Color.white);
+        tempWest.setBackground(new Color(250,250,250));
         JPanel tempEast = new JPanel();
         tempEast.setPreferredSize(new Dimension(430, screenSize.height));
-        tempEast.setBackground(Color.white);
+        tempEast.setBackground(new Color(250,250,250));
         JPanel tempTop = new JPanel();
         tempTop.setPreferredSize(new Dimension(1874, 44));
-        tempTop.setBackground(Color.white);
+        tempTop.setBackground(new Color(250,250,250));
         boardPanel.add(tempEast, BorderLayout.EAST);
         boardPanel.add(tempWest, BorderLayout.WEST);
         boardPanel.add(tempTop, BorderLayout.NORTH);
@@ -252,21 +254,14 @@ public class HomeFront {
 
         bt_menuLogo.addActionListener(actionListener_bt_menuLogo);
 
-        bt_menuHome.addActionListener(new ActionListener() {
+        bt_menuHome.addMouseListener(new MouseListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void mouseClicked(MouseEvent e) {
                 frame.getContentPane().removeAll();
                 frame.getContentPane().add(menuPanel, "West");
                 frame.getContentPane().add(contentPanel, "Center");
                 frame.revalidate();
                 frame.repaint();
-            }
-        });
-
-        bt_menuHome.addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-
             }
 
             @Override
@@ -294,8 +289,10 @@ public class HomeFront {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.getContentPane().removeAll();
-                frame.getContentPane().add(menuPanel, "West");
-                frame.getContentPane().add(testPanel, "Center");
+                mainPanel.add(menuPanel, BorderLayout.WEST);
+                mainPanel.add(new EachUserBoard(1), BorderLayout.CENTER);
+                mainPanel.setBounds(0,0, screenSize.width, screenSize.height);
+                frame.getContentPane().add(mainPanel);
                 frame.revalidate();
                 frame.repaint();
             }
