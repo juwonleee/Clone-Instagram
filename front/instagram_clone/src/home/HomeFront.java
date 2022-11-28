@@ -6,7 +6,6 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -27,30 +26,30 @@ public class HomeFront {
 
     Toolkit toolkit = Toolkit.getDefaultToolkit();
     Dimension screenSize = toolkit.getScreenSize();
-    private static ImageIcon ICON = new ImageIcon("image/instagram_circle.png");
+    private static ImageIcon ICON = new ImageIcon("front/instagram_clone/image/instagram_circle.png");
 
     //left menu
     JPanel menuLogoPanel = new JPanel(new BorderLayout());
     JPanel menuMainPanel = new JPanel();
     JPanel menuMorePanel = new JPanel(new BorderLayout());
 
-    ImageIcon menuLogo = new ImageIcon("image/menu_logo.png");
-    ImageIcon menuHome = new ImageIcon("image/menu_home.png");
-    ImageIcon menuSearch = new ImageIcon("image/menu_search.png");
-    ImageIcon menuDiscover = new ImageIcon("image/menu_discover.png");
-    ImageIcon menuMessage = new ImageIcon("image/menu_message.png");
-    ImageIcon menuNotice = new ImageIcon("image/menu_notice.png");
-    ImageIcon menuUpload = new ImageIcon("image/menu_upload.png");
-    ImageIcon menuProfil = new ImageIcon("image/harry_potter_profil_circle.png");
-    ImageIcon menuMore = new ImageIcon("image/menu_more.png");
+    ImageIcon menuLogo = new ImageIcon("front/instagram_clone/image/menu_logo.png");
+    ImageIcon menuHome = new ImageIcon("front/instagram_clone/image/menu_home.png");
+    ImageIcon menuSearch = new ImageIcon("front/instagram_clone/image/menu_search.png");
+    ImageIcon menuDiscover = new ImageIcon("front/instagram_clone/image/menu_discover.png");
+    ImageIcon menuMessage = new ImageIcon("front/instagram_clone/image/menu_message.png");
+    ImageIcon menuNotice = new ImageIcon("front/instagram_clone/image/menu_notice.png");
+    ImageIcon menuUpload = new ImageIcon("front/instagram_clone/image/menu_upload.png");
+    ImageIcon menuProfil = new ImageIcon("front/instagram_clone/image/harry_potter_profil_circle.png");
+    ImageIcon menuMore = new ImageIcon("front/instagram_clone/image/menu_more.png");
 
-    ImageIcon menuGrayHome = new ImageIcon("image/menu_gray_home.png");
-    ImageIcon menuGraySearch = new ImageIcon("image/menu_gray_search.png");
-    ImageIcon menuGrayDiscover = new ImageIcon("image/menu_gray_discover.png");
-    ImageIcon menuGrayMessage = new ImageIcon("image/menu_gray_message.png");
-    ImageIcon menuGrayNotice = new ImageIcon("image/menu_gray_notice.png");
-    ImageIcon menuGrayUpload = new ImageIcon("image/menu_gray_upload.png");
-    ImageIcon menuGrayMore = new ImageIcon("image/menu_gray_more.png");
+    ImageIcon menuGrayHome = new ImageIcon("front/instagram_clone/image/menu_gray_home.png");
+    ImageIcon menuGraySearch = new ImageIcon("front/instagram_clone/image/menu_gray_search.png");
+    ImageIcon menuGrayDiscover = new ImageIcon("front/instagram_clone/image/menu_gray_discover.png");
+    ImageIcon menuGrayMessage = new ImageIcon("front/instagram_clone/image/menu_gray_message.png");
+    ImageIcon menuGrayNotice = new ImageIcon("front/instagram_clone/image/menu_gray_notice.png");
+    ImageIcon menuGrayUpload = new ImageIcon("front/instagram_clone/image/menu_gray_upload.png");
+    ImageIcon menuGrayMore = new ImageIcon("front/instagram_clone/image/menu_gray_more.png");
 
     JButton bt_menuLogo;
     JButton bt_menuHome;

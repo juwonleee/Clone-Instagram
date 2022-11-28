@@ -4,15 +4,14 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class EachComment extends JPanel {
 
-    ImageIcon commentLikeImg = new ImageIcon("image/icon_comment_like.png");
-    ImageIcon commentLikeFillImg = new ImageIcon("image/icon_comment_like_fill.png");
+    ImageIcon commentLikeImg = new ImageIcon("front/instagram_clone/image/icon_comment_like.png");
+    ImageIcon commentLikeFillImg = new ImageIcon("front/instagram_clone/image/icon_comment_like_fill.png");
 
     String id;
     String text;
