@@ -13,7 +13,6 @@ public class EachArticle extends JPanel {
     Toolkit toolkit = Toolkit.getDefaultToolkit();
     Dimension screenSize = toolkit.getScreenSize();
 
-
     JPanel topPanel = new JPanel(new BorderLayout());
     JPanel top_centerPanel = new JPanel(new GridBagLayout());
     JPanel top_realPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
