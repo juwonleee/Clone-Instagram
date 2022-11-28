@@ -78,7 +78,7 @@ public class HomeFront {
         frame.getContentPane().add(mainPanel);
     }
 
-    private void setMainPanel(){
+    private void setMainPanel() {
 
         getLeftMenu();
         setBoardPanel();
@@ -92,7 +92,7 @@ public class HomeFront {
         mainPanel.add(menuPanel, BorderLayout.WEST);
         mainPanel.add(contentPanel, BorderLayout.CENTER);
 
-        mainPanel.setBounds(0,0, screenSize.width, screenSize.height);
+        mainPanel.setBounds(0, 0, screenSize.width, screenSize.height);
 
     }
 
@@ -110,7 +110,7 @@ public class HomeFront {
     private void setBoardPanel() {
         board_centerPanel.setLayout(new BoxLayout(board_centerPanel, BoxLayout.Y_AXIS));
         JScrollPane boardScroll = new JScrollPane(board_centerPanel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        boardScroll.setBorder(new EmptyBorder(0,0,0,0));
+        boardScroll.setBorder(new EmptyBorder(0, 0, 0, 0));
         boardScroll.getVerticalScrollBar().setUI(new MyScrollBarUI());
 
         boardPanel.setPreferredSize(new Dimension(1330, screenSize.height));
@@ -138,7 +138,7 @@ public class HomeFront {
 
     private ImageIcon setMenuBtnSize(ImageIcon imgIcon, int width, int height) {
         Image img = imgIcon.getImage();
-        Image updateImg = img.getScaledInstance(width,height, Image.SCALE_AREA_AVERAGING);
+        Image updateImg = img.getScaledInstance(width, height, Image.SCALE_AREA_AVERAGING);
         ImageIcon updateIcon = new ImageIcon(updateImg);
 
         return updateIcon;
@@ -156,7 +156,7 @@ public class HomeFront {
         logoBorderTemp.setPreferredSize(new Dimension(1, 92));
         menuLogoPanel.add(logoBorderTemp, BorderLayout.EAST);
 
-        menuMainPanel.setLayout(new GridLayout(7,1, 0, 10));
+        menuMainPanel.setLayout(new GridLayout(7, 1, 0, 10));
         menuMainPanel.setBackground(Color.white);
         menuMainPanel.setPreferredSize(new Dimension(220, 450));
         menuMainPanel.add(bt_menuHome);
@@ -225,9 +225,9 @@ public class HomeFront {
         JLabel profilImgLabel = new JLabel(setMenuBtnSize(menuProfil, 24, 24));
         JLabel profilTextLabel = new JLabel("프로필");
         profilTextLabel.setFont(new Font(profilTextLabel.getFont().getName(), Font.BOLD, 15));
-        Border profilTextMargin = new EmptyBorder(0,12,0,0);
+        Border profilTextMargin = new EmptyBorder(0, 12, 0, 0);
         profilTextLabel.setBorder(new CompoundBorder(profilTextLabel.getBorder(), profilTextMargin));
-        Border menuProfilMargin = new EmptyBorder(0,20,0,0);
+        Border menuProfilMargin = new EmptyBorder(0, 20, 0, 0);
         panel_menuProfil.setBorder(new CompoundBorder(panel_menuProfil.getBorder(), menuProfilMargin));
         panel_menuProfil.setBackground(Color.WHITE);
         panel_menuProfil.add(profilImgLabel);
@@ -235,7 +235,6 @@ public class HomeFront {
 
         setMenuButtonListener();
     }
-
 
 
     private void setMenuButtonListener() {
@@ -455,7 +454,7 @@ public class HomeFront {
 
             @Override
             public void mouseEntered(MouseEvent e) {
-                panel_menuProfil.setBackground(new Color(224,224,224));
+                panel_menuProfil.setBackground(new Color(224, 224, 224));
             }
 
             @Override
@@ -497,7 +496,4 @@ public class HomeFront {
         homeFront.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         homeFront.frame.setVisible(true);
     }
-
-    //주석
-
 }
