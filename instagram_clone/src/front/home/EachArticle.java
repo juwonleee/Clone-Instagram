@@ -1,10 +1,15 @@
 package front.home;
 
+import front.util.ArticleDB;
+import front.util.ArticleDBManager;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -47,12 +52,20 @@ public class EachArticle extends JPanel {
     JLabel profilEmptyLabel;
     JTextField typeCommentField;
 
+    ArticleDBManager articleDBManager;
+    ArticleDB articleData;
     String myId = "harry_potter";
     int commentCnt = 3;
 
     Boolean isLiked = false;
 
-    public EachArticle() {
+    public EachArticle(ArticleDB article) {
+        articleData = article;
+        articleDBManager = new ArticleDBManager();
+
+        myId = articleDBManager.getUsername(article.userIdx);
+        commentCnt = article.comments.size();
+
         setLayout(new BorderLayout());
         setBackground(Color.WHITE);
 
@@ -87,7 +100,7 @@ public class EachArticle extends JPanel {
 
         top_realPanel.setBackground(Color.WHITE);
         top_realPanel.setPreferredSize(new Dimension(382,28));
-        top_realPanel.add(new JLabel(myId + " ·"));
+        top_realPanel.add(new JLabel( myId + " ·"));
         top_realPanel.add(new JLabel("3시간"));
         top_centerPanel.add(top_realPanel);
         top_centerPanel.setBackground(Color.WHITE);
@@ -165,7 +178,7 @@ public class EachArticle extends JPanel {
 
     private void setMainArticle() {
         JLabel articleIdLabel = new JLabel(myId);
-        JLabel articleTextLabel = new JLabel("시간을 돌리는 자");
+        JLabel articleTextLabel = new JLabel(articleData.content);
         bottom_centerPanel.setBackground(Color.WHITE);
         bottom_centerPanel.add(articleIdLabel);
         bottom_centerPanel.add(articleTextLabel);
@@ -180,10 +193,14 @@ public class EachArticle extends JPanel {
         JPanel allCommentPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         allCommentPanel.setBackground(Color.WHITE);
         allCommentPanel.add(allCommentLabel);
-        bottom_bottomPanel.add(allCommentPanel);
+        //bottom_bottomPanel.add(allCommentPanel);
 
-        bottom_bottomPanel.add(new EachComment("herrr_ny", "너 뭐하니?"));
-        bottom_bottomPanel.add(new EachComment("rohn__", "너 뭐해??"));
+        for (int i = 0; i < articleData.comments.size(); i++){
+            String username = articleDBManager.getUsername(articleData.comments.get(i).userIdx);
+            bottom_bottomPanel.add(new EachComment(username, articleData.comments.get(i).content));
+        }
+        //bottom_bottomPanel.add(new EachComment("herrr_ny", "너 뭐하니?"));
+        //bottom_bottomPanel.add(new EachComment("rohn__", "너 뭐해??"));
 
         JPanel writeCommentPanel = new JPanel(new BorderLayout());
         writeCommentPanel.setBackground(Color.WHITE);
@@ -196,12 +213,30 @@ public class EachArticle extends JPanel {
         typeCommentField = new HintTextField("댓글 달기...");
         typeCommentField.setPreferredSize(new Dimension(440, 22));
         writeCommentPanel.add(typeCommentField, BorderLayout.CENTER);
+        setTypeCommentFieldListener();
 
         Border writeBorder = writeCommentPanel.getBorder();
         Border writeMargin = new EmptyBorder(8,0,0,0);
         writeCommentPanel.setBorder(new CompoundBorder(writeBorder, writeMargin));
 
         bottom_bottomPanel.add(writeCommentPanel);
+    }
+    private void setTypeCommentFieldListener(){
+        typeCommentField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String username = articleDBManager.getCurrentUsername();
+                String content = typeCommentField.getText();
+                bottom_bottomPanel.add(new EachComment(username, content), 0);
+
+                articleDBManager.addComment(content, articleData);
+
+                typeCommentField.setText("");
+
+                revalidate();
+                repaint();
+            }
+        });
     }
 
     private void setArticleClickListener() {

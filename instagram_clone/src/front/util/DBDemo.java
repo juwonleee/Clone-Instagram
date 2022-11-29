@@ -12,7 +12,7 @@ public class DBDemo {
         System.out.println("content: " + article.content);
         System.out.println("userIdx: " + article.userIdx);
         System.out.println("--------Comments-------");
-        for (CommentDB comment : article.comments){;
+        for (CommentDB comment : article.comments){
             System.out.println("content: " + comment.content);
             System.out.println("commentIdx: " + comment.commentIdx);
             System.out.println("postIdx: " + comment.postIdx);
@@ -29,9 +29,11 @@ public class DBDemo {
         for (ArticleDB article : articles){
             printArticle(article);
         }
-
+/*
         for (int i = 0; i < 3; i++) {
             manager.addComment("추가된 메세지" + i, articles.get(i));
         }
+ */
+        manager.addComment("@anbj1004 이거 보여?", articles.get(0));
     }
 }
