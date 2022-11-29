@@ -1,6 +1,8 @@
 package front.home;
 
 import front.User.EachUserBoard;
+import front.util.ArticleDB;
+import front.util.ArticleDBManager;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -9,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 public class Home extends JFrame {
 
@@ -70,9 +73,12 @@ public class Home extends JFrame {
         setMenuPanel();
         setMainPanel();
 
+        ArticleDBManager.setCurrentUser(1); //로그인 된 유저 번호로 초기화
+
         getContentPane().add(menuPanel, BorderLayout.WEST);
         getContentPane().add(mainPanel, BorderLayout.CENTER);
     }
+
 
     private void setMainPanel() {
         mainPanel.setPreferredSize(new Dimension(980, allHeight));
@@ -101,11 +107,14 @@ public class Home extends JFrame {
     private void getArticle() {
         center.setLayout(new BoxLayout(center, BoxLayout.Y_AXIS));
 
-        center.add(new EachArticle());
-        center.add(new Line());
-        center.add(new EachArticle());
-        center.add(new Line());
-        center.add(new EachArticle());
+        ArticleDBManager manager = new ArticleDBManager();
+        ArrayList<ArticleDB> list =  manager.getArticleList();
+
+        for (int i = 0; i < list.size(); i++){
+            center.add(new EachArticle(list.get(i)));
+            center.add(new Line());
+        }
+
     }
 
     private void setMenuPanel(){
