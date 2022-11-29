@@ -1,4 +1,4 @@
-package home;
+package front.home;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,11 +13,11 @@ public class Login extends JFrame {
 
     int allHeight = screenSize.height - 100;
 
-    //JLabel background = new JLabel(new ImageIcon("front/instagram_clone/image/login_bg.png"));
-    private Image background=new ImageIcon("front/instagram_clone/image/login_bg.png").getImage();
-    ImageIcon signupImg = new ImageIcon("front/instagram_clone/image/login_signup.png");
-    ImageIcon loginImg = new ImageIcon("front/instagram_clone/image/login_login.png");
-    private static ImageIcon ICON = new ImageIcon("front/instagram_clone/image/instagram_circle.png");
+    //JLabel background = new JLabel(new ImageIcon("front/instagram_clone/front.image/login_bg.png"));
+    private Image background=new ImageIcon("instagram_clone/src/front/image/login_bg.png").getImage();
+    ImageIcon signupImg = new ImageIcon("instagram_clone/src/front/image/login_signup.png");
+    ImageIcon loginImg = new ImageIcon("instagram_clone/src/front/image/login_login.png");
+    private static ImageIcon ICON = new ImageIcon("instagram_clone/src/front/image/instagram_circle.png");
 
     JPanel loginMainPanel = new JPanel();
 

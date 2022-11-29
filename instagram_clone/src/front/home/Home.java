@@ -1,10 +1,11 @@
-package home;
+package front.home;
+
+import front.User.EachUserBoard;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -13,7 +14,7 @@ public class Home extends JFrame {
 
     Toolkit toolkit = Toolkit.getDefaultToolkit();
     Dimension screenSize = toolkit.getScreenSize();
-    private static ImageIcon ICON = new ImageIcon("front/instagram_clone/image/instagram_circle.png");
+    private static ImageIcon ICON = new ImageIcon("instagram_clone/src/front/image/instagram_circle.png");
     int allHeight = screenSize.height - 100;
 
     JPanel menuPanel = new JPanel(new BorderLayout());
@@ -24,23 +25,23 @@ public class Home extends JFrame {
     JPanel menuMainPanel = new JPanel();
     JPanel menuMorePanel = new JPanel(new BorderLayout());
 
-    ImageIcon menuLogo = new ImageIcon("front/instagram_clone/image/menu_logo.png");
-    ImageIcon menuHome = new ImageIcon("front/instagram_clone/image/menu_home.png");
-    ImageIcon menuSearch = new ImageIcon("front/instagram_clone/image/menu_search.png");
-    ImageIcon menuDiscover = new ImageIcon("front/instagram_clone/image/menu_discover.png");
-    ImageIcon menuMessage = new ImageIcon("front/instagram_clone/image/menu_message.png");
-    ImageIcon menuNotice = new ImageIcon("front/instagram_clone/image/menu_notice.png");
-    ImageIcon menuUpload = new ImageIcon("front/instagram_clone/image/menu_upload.png");
-    ImageIcon menuProfil = new ImageIcon("front/instagram_clone/image/harry_potter_profil_circle.png");
-    ImageIcon menuMore = new ImageIcon("front/instagram_clone/image/menu_more.png");
+    ImageIcon menuLogo = new ImageIcon("instagram_clone/src/front/image/menu_logo.png");
+    ImageIcon menuHome = new ImageIcon("instagram_clone/src/front/image/menu_home.png");
+    ImageIcon menuSearch = new ImageIcon("instagram_clone/src/front/image/menu_search.png");
+    ImageIcon menuDiscover = new ImageIcon("instagram_clone/src/front/image/menu_discover.png");
+    ImageIcon menuMessage = new ImageIcon("instagram_clone/src/front/image/menu_message.png");
+    ImageIcon menuNotice = new ImageIcon("instagram_clone/src/front/image/menu_notice.png");
+    ImageIcon menuUpload = new ImageIcon("instagram_clone/src/front/image/menu_upload.png");
+    ImageIcon menuProfil = new ImageIcon("instagram_clone/src/front/image/harry_potter_profil_circle.png");
+    ImageIcon menuMore = new ImageIcon("instagram_clone/src/front/image/menu_more.png");
 
-    ImageIcon menuGrayHome = new ImageIcon("front/instagram_clone/image/menu_gray_home.png");
-    ImageIcon menuGraySearch = new ImageIcon("front/instagram_clone/image/menu_gray_search.png");
-    ImageIcon menuGrayDiscover = new ImageIcon("front/instagram_clone/image/menu_gray_discover.png");
-    ImageIcon menuGrayMessage = new ImageIcon("front/instagram_clone/image/menu_gray_message.png");
-    ImageIcon menuGrayNotice = new ImageIcon("front/instagram_clone/image/menu_gray_notice.png");
-    ImageIcon menuGrayUpload = new ImageIcon("front/instagram_clone/image/menu_gray_upload.png");
-    ImageIcon menuGrayMore = new ImageIcon("front/instagram_clone/image/menu_gray_more.png");
+    ImageIcon menuGrayHome = new ImageIcon("instagram_clone/src/front/image/menu_gray_home.png");
+    ImageIcon menuGraySearch = new ImageIcon("instagram_clone/src/front/image/menu_gray_search.png");
+    ImageIcon menuGrayDiscover = new ImageIcon("instagram_clone/src/front/image/menu_gray_discover.png");
+    ImageIcon menuGrayMessage = new ImageIcon("instagram_clone/src/front/image/menu_gray_message.png");
+    ImageIcon menuGrayNotice = new ImageIcon("instagram_clone/src/front/image/menu_gray_notice.png");
+    ImageIcon menuGrayUpload = new ImageIcon("instagram_clone/src/front/image/menu_gray_upload.png");
+    ImageIcon menuGrayMore = new ImageIcon("instagram_clone/src/front/image/menu_gray_more.png");
 
     JButton bt_menuLogo;
     JButton bt_menuHome;

@@ -1,4 +1,4 @@
-package home;
+package front.home;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -10,8 +10,8 @@ import java.awt.event.MouseListener;
 
 public class EachComment extends JPanel {
 
-    ImageIcon commentLikeImg = new ImageIcon("front/instagram_clone/image/icon_comment_like.png");
-    ImageIcon commentLikeFillImg = new ImageIcon("front/instagram_clone/image/icon_comment_like_fill.png");
+    ImageIcon commentLikeImg = new ImageIcon("front/instagram_clone/src/front/image/icon_comment_like.png");
+    ImageIcon commentLikeFillImg = new ImageIcon("front/instagram_clone/src/front/image/icon_comment_like_fill.png");
 
     String id;
     String text;
