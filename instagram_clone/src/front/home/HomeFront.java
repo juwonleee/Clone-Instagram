@@ -98,7 +98,7 @@ public class HomeFront {
     }
 
     private void getContentPanel() {
-        contentPanel.add(new EachArticle());
+        //contentPanel.add(new EachArticle());
     }
 
     private void setStoryPanel() {
@@ -124,10 +124,10 @@ public class HomeFront {
         boardPanel.add(tempTop, BorderLayout.NORTH);
         boardPanel.add(boardScroll, BorderLayout.CENTER);
 
-        board_centerPanel.add(new EachArticle(), "Center");
+        //board_centerPanel.add(new EachArticle(), "Center");
         board_centerPanel.add(new Line(), "Center");
-        board_centerPanel.add(new EachArticle(), "Center");
-        board_centerPanel.add(new EachArticle(), "Center");
+        //board_centerPanel.add(new EachArticle(), "Center");
+        //board_centerPanel.add(new EachArticle(), "Center");
 
     }
 
