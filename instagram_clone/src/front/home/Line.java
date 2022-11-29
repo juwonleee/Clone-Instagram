@@ -1,4 +1,4 @@
-package home;
+package front.home;
 
 import javax.swing.*;
 import java.awt.*;

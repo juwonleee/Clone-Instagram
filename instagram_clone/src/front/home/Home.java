@@ -1,55 +1,47 @@
-package home;
+package front.home;
 
-import User.EachUserBoard;
+import front.User.EachUserBoard;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class HomeFront {
-    JFrame frame = new JFrame("Instagram");
-    JPanel mainPanel = new JPanel(new BorderLayout());
-    JPanel menuPanel = new JPanel();
-    JPanel contentPanel = new JPanel(new BorderLayout());
-
-    JPanel boardPanel = new JPanel(new BorderLayout());
-    JPanel storyPanel = new JPanel(new BorderLayout());
-    JPanel testPanel = new JPanel(new BorderLayout());
-    JLabel testLabel = new JLabel("test");
-    JLabel storyLabel = new JLabel("story");
+public class Home extends JFrame {
 
     Toolkit toolkit = Toolkit.getDefaultToolkit();
     Dimension screenSize = toolkit.getScreenSize();
-    private static ImageIcon ICON = new ImageIcon("front/instagram_clone/image/instagram_circle.png");
+    private static ImageIcon ICON = new ImageIcon("instagram_clone/src/front/image/instagram_circle.png");
+    int allHeight = screenSize.height - 100;
+
+    JPanel menuPanel = new JPanel(new BorderLayout());
+    JPanel mainPanel = new JPanel(new BorderLayout());
 
     //left menu
     JPanel menuLogoPanel = new JPanel(new BorderLayout());
     JPanel menuMainPanel = new JPanel();
     JPanel menuMorePanel = new JPanel(new BorderLayout());
 
-    ImageIcon menuLogo = new ImageIcon("front/instagram_clone/image/menu_logo.png");
-    ImageIcon menuHome = new ImageIcon("front/instagram_clone/image/menu_home.png");
-    ImageIcon menuSearch = new ImageIcon("front/instagram_clone/image/menu_search.png");
-    ImageIcon menuDiscover = new ImageIcon("front/instagram_clone/image/menu_discover.png");
-    ImageIcon menuMessage = new ImageIcon("front/instagram_clone/image/menu_message.png");
-    ImageIcon menuNotice = new ImageIcon("front/instagram_clone/image/menu_notice.png");
-    ImageIcon menuUpload = new ImageIcon("front/instagram_clone/image/menu_upload.png");
-    ImageIcon menuProfil = new ImageIcon("front/instagram_clone/image/harry_potter_profil_circle.png");
-    ImageIcon menuMore = new ImageIcon("front/instagram_clone/image/menu_more.png");
+    ImageIcon menuLogo = new ImageIcon("instagram_clone/src/front/image/menu_logo.png");
+    ImageIcon menuHome = new ImageIcon("instagram_clone/src/front/image/menu_home.png");
+    ImageIcon menuSearch = new ImageIcon("instagram_clone/src/front/image/menu_search.png");
+    ImageIcon menuDiscover = new ImageIcon("instagram_clone/src/front/image/menu_discover.png");
+    ImageIcon menuMessage = new ImageIcon("instagram_clone/src/front/image/menu_message.png");
+    ImageIcon menuNotice = new ImageIcon("instagram_clone/src/front/image/menu_notice.png");
+    ImageIcon menuUpload = new ImageIcon("instagram_clone/src/front/image/menu_upload.png");
+    ImageIcon menuProfil = new ImageIcon("instagram_clone/src/front/image/harry_potter_profil_circle.png");
+    ImageIcon menuMore = new ImageIcon("instagram_clone/src/front/image/menu_more.png");
 
-    ImageIcon menuGrayHome = new ImageIcon("front/instagram_clone/image/menu_gray_home.png");
-    ImageIcon menuGraySearch = new ImageIcon("front/instagram_clone/image/menu_gray_search.png");
-    ImageIcon menuGrayDiscover = new ImageIcon("front/instagram_clone/image/menu_gray_discover.png");
-    ImageIcon menuGrayMessage = new ImageIcon("front/instagram_clone/image/menu_gray_message.png");
-    ImageIcon menuGrayNotice = new ImageIcon("front/instagram_clone/image/menu_gray_notice.png");
-    ImageIcon menuGrayUpload = new ImageIcon("front/instagram_clone/image/menu_gray_upload.png");
-    ImageIcon menuGrayMore = new ImageIcon("front/instagram_clone/image/menu_gray_more.png");
+    ImageIcon menuGrayHome = new ImageIcon("instagram_clone/src/front/image/menu_gray_home.png");
+    ImageIcon menuGraySearch = new ImageIcon("instagram_clone/src/front/image/menu_gray_search.png");
+    ImageIcon menuGrayDiscover = new ImageIcon("instagram_clone/src/front/image/menu_gray_discover.png");
+    ImageIcon menuGrayMessage = new ImageIcon("instagram_clone/src/front/image/menu_gray_message.png");
+    ImageIcon menuGrayNotice = new ImageIcon("instagram_clone/src/front/image/menu_gray_notice.png");
+    ImageIcon menuGrayUpload = new ImageIcon("instagram_clone/src/front/image/menu_gray_upload.png");
+    ImageIcon menuGrayMore = new ImageIcon("instagram_clone/src/front/image/menu_gray_more.png");
 
     JButton bt_menuLogo;
     JButton bt_menuHome;
@@ -61,85 +53,66 @@ public class HomeFront {
     JPanel panel_menuProfil = new JPanel(new FlowLayout(FlowLayout.LEFT));
     JButton bt_menuMore;
 
-    ActionListener actionListener_bt_menuLogo;
-    MouseListener mouseListener_bt_menuLogo;
+    //main panel
+    JScrollPane mainScroll;
 
-    //board
-    JPanel board_centerPanel = new JPanel();
+    JPanel tempWest;
+    JPanel tempEast;
+    JPanel center;
 
-    public HomeFront() {
+    public Home() {
+        setLayout(new BorderLayout());
+        setSize(new Dimension(1265, allHeight));
+        setIconImage(ICON.getImage());
+        setResizable(false);
 
-        frame.setLayout(null);
-
-        frame.setIconImage(ICON.getImage());
+        //여기서 함수 실행
+        setMenuPanel();
         setMainPanel();
 
-
-        frame.setSize(new Dimension(715, screenSize.height));
-        frame.getContentPane().add(mainPanel);
+        getContentPane().add(menuPanel, BorderLayout.WEST);
+        getContentPane().add(mainPanel, BorderLayout.CENTER);
     }
 
     private void setMainPanel() {
+        mainPanel.setPreferredSize(new Dimension(980, allHeight));
+        mainPanel.setBackground(Color.BLACK);
 
-        getLeftMenu();
-        setBoardPanel();
-        setStoryPanel();
-        getContentPanel();
+        tempWest = new JPanel(new BorderLayout());
+        tempEast = new JPanel(new BorderLayout());
+        center = new JPanel();
 
-        testPanel.setPreferredSize(new Dimension(1330, screenSize.height));
-        testPanel.setBackground(Color.CYAN);
-        testPanel.add(testLabel, BorderLayout.CENTER);
+        tempWest.setPreferredSize(new Dimension(250, allHeight));
+        tempEast.setPreferredSize(new Dimension(250, allHeight));
 
-        mainPanel.add(menuPanel, BorderLayout.WEST);
-        mainPanel.add(contentPanel, BorderLayout.CENTER);
+        center.setBackground(Color.WHITE);
 
-        mainPanel.setBounds(0, 0, screenSize.width, screenSize.height);
+        getArticle();
 
+        mainScroll = new JScrollPane(center, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        mainScroll.setBorder(new EmptyBorder(0,0,0,0));
+        mainScroll.getVerticalScrollBar().setUI(new MyScrollBarUI());
+
+        mainPanel.add(tempWest, BorderLayout.WEST);
+        mainPanel.add(tempEast, BorderLayout.EAST);
+        mainPanel.add(mainScroll, BorderLayout.CENTER);
     }
 
-    private void getContentPanel() {
-        contentPanel.add(new EachArticle());
+    private void getArticle() {
+        center.setLayout(new BoxLayout(center, BoxLayout.Y_AXIS));
+
+        center.add(new EachArticle());
+        center.add(new Line());
+        center.add(new EachArticle());
+        center.add(new Line());
+        center.add(new EachArticle());
     }
 
-    private void setStoryPanel() {
-        storyPanel.setPreferredSize(new Dimension(300, screenSize.height));
-        storyPanel.setBackground(new Color(250,250,250));
-        storyPanel.add(storyLabel, BorderLayout.CENTER);
-    }
-
-    private void setBoardPanel() {
-        board_centerPanel.setLayout(new BoxLayout(board_centerPanel, BoxLayout.Y_AXIS));
-        JScrollPane boardScroll = new JScrollPane(board_centerPanel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        boardScroll.setBorder(new EmptyBorder(0, 0, 0, 0));
-        boardScroll.getVerticalScrollBar().setUI(new MyScrollBarUI());
-
-        boardPanel.setBackground(new Color(250,250,250));
-        JPanel tempEast = new JPanel();
-        tempEast.setPreferredSize(new Dimension(430, screenSize.height));
-        tempEast.setBackground(new Color(250,250,250));
-        JPanel tempTop = new JPanel();
-        tempTop.setPreferredSize(new Dimension(1014, 44));
-        tempTop.setBackground(new Color(250,250,250));
-        boardPanel.add(tempEast, BorderLayout.EAST);
-        boardPanel.add(tempTop, BorderLayout.NORTH);
-        boardPanel.add(boardScroll, BorderLayout.CENTER);
-
-        board_centerPanel.add(new EachArticle(), "Center");
-        board_centerPanel.add(new Line(), "Center");
-        board_centerPanel.add(new EachArticle(), "Center");
-        board_centerPanel.add(new EachArticle(), "Center");
-
-    }
-
-    private ImageIcon setMenuBtnSize(ImageIcon imgIcon, int width, int height) {
-        Image img = imgIcon.getImage();
-        Image updateImg = img.getScaledInstance(width, height, Image.SCALE_AREA_AVERAGING);
-        ImageIcon updateIcon = new ImageIcon(updateImg);
-
-        return updateIcon;
-    }
-
-    public void getLeftMenu() {
+    private void setMenuPanel(){
+        menuPanel.setPreferredSize(new Dimension(245, allHeight));
+        menuPanel.setBackground(Color.WHITE);
+        Border menuPanelPadding = new EmptyBorder(8,12,20,12);
+        menuPanel.setBorder(new CompoundBorder(menuPanel.getBorder(), menuPanelPadding));
 
         getMenuBtn();
 
@@ -151,7 +124,7 @@ public class HomeFront {
         logoBorderTemp.setPreferredSize(new Dimension(1, 92));
         menuLogoPanel.add(logoBorderTemp, BorderLayout.EAST);
 
-        menuMainPanel.setLayout(new GridLayout(7, 1, 0, 10));
+        menuMainPanel.setLayout(new GridLayout(7,1,0,10));
         menuMainPanel.setBackground(Color.white);
         menuMainPanel.setPreferredSize(new Dimension(220, 450));
         menuMainPanel.add(bt_menuHome);
@@ -162,25 +135,34 @@ public class HomeFront {
         menuMainPanel.add(bt_menuUpload);
         menuMainPanel.add(panel_menuProfil);
 
-        menuMorePanel.setPreferredSize(new Dimension(220, 64));
-        menuMorePanel.setBackground(Color.white);
-        menuMorePanel.add(bt_menuMore, BorderLayout.CENTER);
-
         JPanel temp = new JPanel();
         temp.add(menuMainPanel);
         temp.setBackground(Color.white);
 
+        menuMorePanel.setPreferredSize(new Dimension(220, 64));
+        menuMorePanel.setBackground(Color.white);
+        menuMorePanel.add(bt_menuMore, BorderLayout.CENTER);
+        JPanel moreBorderTemp = new JPanel();
+        moreBorderTemp.setBackground(Color.GRAY);
+        moreBorderTemp.setPreferredSize(new Dimension(1, 64));
+        menuMorePanel.add(moreBorderTemp, BorderLayout.EAST);
+
         JPanel borderTemp = new JPanel();
         borderTemp.setBackground(Color.GRAY);
-        borderTemp.setPreferredSize(new Dimension(1, screenSize.height));
+        borderTemp.setPreferredSize(new Dimension(1, allHeight));
 
-        menuPanel.setLayout(new BorderLayout());
-        menuPanel.setPreferredSize(new Dimension(245, screenSize.height));
-        menuPanel.setBackground(Color.white);
         menuPanel.add(menuLogoPanel, BorderLayout.NORTH);
         menuPanel.add(temp, BorderLayout.CENTER);
         menuPanel.add(menuMorePanel, BorderLayout.SOUTH);
         menuPanel.add(borderTemp, BorderLayout.EAST);
+    }
+
+    private ImageIcon setMenuBtnSize(ImageIcon imgIcon, int width, int height) {
+        Image img = imgIcon.getImage();
+        Image updateImg = img.getScaledInstance(width,height, Image.SCALE_AREA_AVERAGING);
+        ImageIcon updateIcon = new ImageIcon(updateImg);
+
+        return updateIcon;
     }
 
     private void getMenuBtn() {
@@ -220,9 +202,9 @@ public class HomeFront {
         JLabel profilImgLabel = new JLabel(setMenuBtnSize(menuProfil, 24, 24));
         JLabel profilTextLabel = new JLabel("프로필");
         profilTextLabel.setFont(new Font(profilTextLabel.getFont().getName(), Font.BOLD, 15));
-        Border profilTextMargin = new EmptyBorder(0, 12, 0, 0);
+        Border profilTextMargin = new EmptyBorder(0,12,0,0);
         profilTextLabel.setBorder(new CompoundBorder(profilTextLabel.getBorder(), profilTextMargin));
-        Border menuProfilMargin = new EmptyBorder(0, 20, 0, 0);
+        Border menuProfilMargin = new EmptyBorder(0,20,0,0);
         panel_menuProfil.setBorder(new CompoundBorder(panel_menuProfil.getBorder(), menuProfilMargin));
         panel_menuProfil.setBackground(Color.WHITE);
         panel_menuProfil.add(profilImgLabel);
@@ -232,29 +214,48 @@ public class HomeFront {
     }
 
 
+
     private void setMenuButtonListener() {
 
-        actionListener_bt_menuLogo = new ActionListener() {
+        bt_menuLogo.addMouseListener(new MouseListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.getContentPane().removeAll();
-                frame.getContentPane().add(menuPanel, "West");
-                frame.getContentPane().add(contentPanel, "Center");
-                frame.revalidate();
-                frame.repaint();
+            public void mouseClicked(MouseEvent e) {
+                getContentPane().removeAll();
+                getContentPane().add(menuPanel, BorderLayout.WEST);
+                getContentPane().add(mainPanel, BorderLayout.CENTER);
+                revalidate();
+                repaint();
             }
-        };
 
-        bt_menuLogo.addActionListener(actionListener_bt_menuLogo);
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                bt_menuLogo.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                bt_menuLogo.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+            }
+        });
 
         bt_menuHome.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                frame.getContentPane().removeAll();
-                frame.getContentPane().add(menuPanel, "West");
-                frame.getContentPane().add(contentPanel, "Center");
-                frame.revalidate();
-                frame.repaint();
+                getContentPane().removeAll();
+                getContentPane().add(menuPanel, BorderLayout.WEST);
+                getContentPane().add(mainPanel, BorderLayout.CENTER);
+                revalidate();
+                repaint();
             }
 
             @Override
@@ -275,19 +276,6 @@ public class HomeFront {
             @Override
             public void mouseExited(MouseEvent e) {
                 bt_menuHome.setIcon(setMenuBtnSize(menuHome, 220, 48));
-            }
-        });
-
-        bt_menuSearch.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.getContentPane().removeAll();
-                mainPanel.add(menuPanel, BorderLayout.WEST);
-                mainPanel.add(new EachUserBoard(1), BorderLayout.CENTER);
-                mainPanel.setBounds(0,0, screenSize.width, screenSize.height);
-                frame.getContentPane().add(mainPanel);
-                frame.revalidate();
-                frame.repaint();
             }
         });
 
@@ -429,7 +417,11 @@ public class HomeFront {
         panel_menuProfil.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
+                getContentPane().removeAll();
+                getContentPane().add(menuPanel, BorderLayout.WEST);
+                getContentPane().add(new EachUserBoard(1), BorderLayout.CENTER);
+                revalidate();
+                repaint();
             }
 
             @Override
@@ -444,7 +436,7 @@ public class HomeFront {
 
             @Override
             public void mouseEntered(MouseEvent e) {
-                panel_menuProfil.setBackground(new Color(224, 224, 224));
+                panel_menuProfil.setBackground(new Color(224,224,224));
             }
 
             @Override
@@ -480,13 +472,4 @@ public class HomeFront {
             }
         });
     }
-
-
-    public static void main(String[] args) throws Exception {
-        HomeFront homeFront = new HomeFront();
-        homeFront.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        homeFront.frame.setVisible(true);
-    }
-
-
 }

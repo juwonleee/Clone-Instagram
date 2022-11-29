@@ -1,6 +1,4 @@
-package User;
-
-import home.MyScrollBarUI;
+package front.User;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -24,6 +22,7 @@ public class EachUserBoard extends JPanel {
     JPanel headerBottomPanel = new JPanel(new BorderLayout());
     JPanel contentPanel = new JPanel(new BorderLayout());
 
+    JPanel profilImgPanel = new JPanel(new BorderLayout());
     JLabel profilImgLabel = new JLabel();
 
     JPanel profilInfoPanel = new JPanel(new BorderLayout());
@@ -31,9 +30,7 @@ public class EachUserBoard extends JPanel {
     JPanel profilInfoCenterPanel = new JPanel(new BorderLayout());
     JPanel profilInfoBottomPanel = new JPanel(new BorderLayout());
 
-    JScrollPane profilScroll;
-
-    ImageIcon profilImg = new ImageIcon("front/instagram_clone/image/harry_potter_profil_circle.png");
+    ImageIcon profilImg = new ImageIcon("front/instagram_clone/front.image/harry_potter_profil_circle.png");
 
     //975
 
@@ -41,14 +38,12 @@ public class EachUserBoard extends JPanel {
         this.userId = id;
 
         setLayout(new BorderLayout());
-        setPreferredSize(new Dimension(1020, screenSize.height));
+        setPreferredSize(new Dimension(1330, screenSize.height));
         setBackground(new Color(250,250,250));
 
-        profilScroll = new JScrollPane(mainPanel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        profilScroll.setBorder(new EmptyBorder(0,0,0,0));
-        profilScroll.getVerticalScrollBar().setUI(new MyScrollBarUI());
-        tempLeftPanel.setPreferredSize(new Dimension(22, screenSize.height));
-        tempRightPanel.setPreferredSize(new Dimension(23, screenSize.height));
+        mainPanel.setPreferredSize(new Dimension(935, screenSize.height));
+        tempLeftPanel.setPreferredSize(new Dimension(340, screenSize.height));
+        tempRightPanel.setPreferredSize(new Dimension(340, screenSize.height));
 
         mainPanel.setBackground(new Color(250,250,250));
         tempLeftPanel.setBackground(new Color(250,250,250));
@@ -59,7 +54,7 @@ public class EachUserBoard extends JPanel {
 
         makeHeader();
 
-        add(profilScroll, BorderLayout.CENTER);
+        add(mainPanel, BorderLayout.CENTER);
         add(tempLeftPanel, BorderLayout.WEST);
         add(tempRightPanel, BorderLayout.EAST);
 
