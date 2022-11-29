@@ -44,14 +44,15 @@ public class Login extends JFrame {
 
 
     public void Loginframe() {
-        setTitle("Instagram");//타이틀
+        setTitle("Instagram"); //타이틀
         setSize(new Dimension(1265, allHeight));
-        setResizable(false);//창의 크기를 변경하지 못하게
-        setLayout(null);//레이아웃을 내맘대로 설정가능하게 해줌.
+        setResizable(false); //창의 크기를 변경하지 못하게
+        setLayout(null); //레이아웃을 내맘대로 설정가능하게
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//JFrame이 정상적으로 종료되게
 
 
+        // 로그인 파란 색 버튼
         bt_loginlogin = new JButton(loginImg);
         bt_loginlogin.setBorderPainted(false);
         bt_loginlogin.addMouseListener(new MouseListener() {
@@ -83,12 +84,15 @@ public class Login extends JFrame {
         bt_loginlogin.setBounds(650,365,220,34);
         add(bt_loginlogin);
 
+
         // 회원가입 버튼
         bt_loginSignup = new JButton(signupImg);
         bt_loginSignup.setBorderPainted(false);
         bt_loginSignup.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                dispose();
+                new Signup();
 
             }
 
@@ -138,9 +142,6 @@ public class Login extends JFrame {
         add(userPwdField);
 
 
-
-
-
         setVisible(true);//창이 보이게
 
 
@@ -149,33 +150,14 @@ public class Login extends JFrame {
     private void setLoginMainPanel(){
         Loginframe();
         loginMainPanel.add(loginframe);
-
-
-//        bt_loginSignup = new JButton(signupImg);
-//        bt_loginSignup.setBorderPainted(false);
-//        bt_loginSignup.setVisible(true);
-//        bt_loginSignup.setLocation(600,500);
-//        loginMainPanel.add(bt_loginSignup);
-//        loginMainPanel.setVisible(true);
     }
 
-//    private void setloginPanel(){
-//
-//        //loginMainPanel.setLocation(600,500);
-//        bt_loginSignup = new JButton(signupImg);
-//        bt_loginSignup.setBorderPainted(false);
-//        bt_loginSignup.setVisible(true);
-//        bt_loginSignup.setLocation(600,500);
-//        loginMainPanel.add(bt_loginSignup);
-//
-////        JPanel temp = new JPanel();
-////        temp.add(loginMainPanel);
-//
-//        add(loginMainPanel);
+//    private void setButtonListener() {
 //
 //
 //
 //    }
+
 
 }
 
