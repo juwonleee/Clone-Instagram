@@ -6,47 +6,89 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 
 public class EachUserBoard extends JPanel {
 
-    private int userId = 0;
+    Color bgColor = new Color(250,250,250);
+
+    private int userIdx = 0;
+    private String userId = "nothing";
+    private int articleNum = 0;
+    private int followNum = 0;
+    private int followerNum = 0;
+    private String  userName = "가나다";
+    private String  userMessage = "라마바사";
 
     Toolkit toolkit = Toolkit.getDefaultToolkit();
     Dimension screenSize = toolkit.getScreenSize();
 
     JPanel mainPanel = new JPanel(new BorderLayout());
+
     JPanel tempLeftPanel = new JPanel(new BorderLayout());
     JPanel tempRightPanel = new JPanel(new BorderLayout());
 
     JPanel headerPanel = new JPanel(new BorderLayout());
     JPanel headerTopPanel = new JPanel(new BorderLayout());
-    JPanel headerBottomPanel = new JPanel(new BorderLayout());
+    JPanel headerBottomPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+
     JPanel contentPanel = new JPanel(new BorderLayout());
+    JPanel articleGridPanel;
 
     JLabel profilImgLabel = new JLabel();
 
     JPanel profilInfoPanel = new JPanel(new BorderLayout());
-    JPanel profilInfoTopPanel = new JPanel(new BorderLayout());
-    JPanel profilInfoCenterPanel = new JPanel(new BorderLayout());
+    JPanel profilInfoTopPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+    JPanel profilInfoCenterPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
     JPanel profilInfoBottomPanel = new JPanel(new BorderLayout());
 
     JScrollPane profilScroll;
 
     ImageIcon profilImg = new ImageIcon("front/instagram_clone/image/harry_potter_profil_circle.png");
+    ImageIcon editProfilImg = new ImageIcon("front/instagram_clone/image/edit_profil.png");
+    ImageIcon setupImg = new ImageIcon("front/instagram_clone/image/setup.png");
+    ImageIcon newHighLightImg = new ImageIcon("front/instagram_clone/image/new_highlight.jpg");
 
-    //975
+    ImageIcon article1Img = new ImageIcon("front/instagram_clone/image/article_1.jpg");
+    ImageIcon article2Img = new ImageIcon("front/instagram_clone/image/article_2.jpg");
+    ImageIcon article3Img = new ImageIcon("front/instagram_clone/image/article_3.jpg");
+    ImageIcon article4Img = new ImageIcon("front/instagram_clone/image/article_4.jpg");
+
+    //프로필인포탑
+    JLabel userIdLabel;
+    JLabel editProfil;
+    JLabel setup;
+
+    //프로필인포센터
+    JPanel articleNumPanel = new JPanel(new BorderLayout());
+    JPanel followerNumPanel = new JPanel(new BorderLayout());
+    JPanel followNumPanel = new JPanel(new BorderLayout());
+    JLabel articleLabel;
+    JLabel articleNumLabel;
+    JLabel followerLabel;
+    JLabel followerNumLabel;
+    JLabel followLabel;
+    JLabel followNumLabel;
+
+    //프로필인포바텀
+    JLabel userNameLabel;
+    JLabel userMessageLabel;
+
 
     public EachUserBoard(int id) {
-        this.userId = id;
+        this.userIdx = id;
+        userId = "harry_potter";
+        articleNum = 4;
+        followerNum = 160;
+        followNum = 200;
+        userName = "해리포터";
+        userMessage = "Hogwarts 그리핀도르 1기 졸업생";
 
         setLayout(new BorderLayout());
-        setPreferredSize(new Dimension(1020, screenSize.height));
+        //setPreferredSize(new Dimension(1020, screenSize.height));
         setBackground(new Color(250,250,250));
 
-        profilScroll = new JScrollPane(mainPanel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        profilScroll.setBorder(new EmptyBorder(0,0,0,0));
-        profilScroll.getVerticalScrollBar().setUI(new MyScrollBarUI());
         tempLeftPanel.setPreferredSize(new Dimension(22, screenSize.height));
         tempRightPanel.setPreferredSize(new Dimension(23, screenSize.height));
 
@@ -58,6 +100,14 @@ public class EachUserBoard extends JPanel {
         mainPanel.setBorder(new CompoundBorder(mainPanel.getBorder(), mainPadding));
 
         makeHeader();
+        makeContent();
+        makeGrid();
+
+        profilScroll = new JScrollPane(mainPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        profilScroll.setPreferredSize(new Dimension(975,screenSize.height - 100));
+        profilScroll.setBorder(new EmptyBorder(0,0,0,0));
+        profilScroll.getVerticalScrollBar().setUI(new MyScrollBarUI());
+        profilScroll.getVerticalScrollBar().setUnitIncrement(16);
 
         add(profilScroll, BorderLayout.CENTER);
         add(tempLeftPanel, BorderLayout.WEST);
@@ -67,24 +117,81 @@ public class EachUserBoard extends JPanel {
 
     private void makeHeader() {
         headerTopPanel.setPreferredSize(new Dimension(mainPanel.getWidth(), 283));
-        headerTopPanel.setBackground(Color.WHITE);
+        headerTopPanel.setBackground(bgColor);
 
         Border headerMargin = new EmptyBorder(0,0,44,0);
         headerTopPanel.setBorder(new CompoundBorder(headerPanel.getBorder(), headerMargin));
 
         headerBottomPanel.setPreferredSize(new Dimension(mainPanel.getWidth(), 174));
-        headerBottomPanel.setBackground(Color.green);
+        headerBottomPanel.setBackground(bgColor);
         headerBottomPanel.setBorder(new CompoundBorder(headerBottomPanel.getBorder(), headerMargin));
 
         headerPanel.add(headerTopPanel, BorderLayout.NORTH);
         headerPanel.add(headerBottomPanel, BorderLayout.SOUTH);
 
+        getHeaderPanel();
+
+        mainPanel.add(headerPanel, BorderLayout.NORTH);
+    }
+
+    private void makeContent() {
+        int contentPanelWidth = contentPanel.getWidth();
+        contentPanel.setPreferredSize(new Dimension(contentPanelWidth, 54));
+        contentPanel.setBackground(bgColor);
+
+        JPanel linePanel = new JPanel(new FlowLayout());
+        linePanel.setPreferredSize(new Dimension(contentPanelWidth, 1));
+        linePanel.setBackground(Color.GRAY);
+        contentPanel.add(linePanel, BorderLayout.NORTH);
+
+        JPanel spacePanel = new JPanel(new FlowLayout());
+        spacePanel.setPreferredSize(new Dimension(contentPanelWidth, 53));
+        spacePanel.setBackground(bgColor);
+        contentPanel.add(spacePanel, BorderLayout.CENTER);
+
+        mainPanel.add(contentPanel, BorderLayout.CENTER);
+    }
+
+    private void makeGrid() {
+        JPanel tempGridPanel = new JPanel(new FlowLayout());
+        Border bottom87 = new EmptyBorder(0,0,87,0);
+
+        articleGridPanel = new JPanel(new GridLayout(0, 3, 28, 28));
+        articleGridPanel.setBackground(bgColor);
+        articleGridPanel.setBorder(new CompoundBorder(articleNumPanel.getBorder(), bottom87));
+        getArticles();
+        tempGridPanel.add(articleGridPanel);
+
+        mainPanel.add(tempGridPanel, BorderLayout.SOUTH);
+    }
+
+    private void getArticles() {
+        articleGridPanel.add(makeImgToLabel(article1Img));
+        articleGridPanel.add(makeImgToLabel(article2Img));
+        articleGridPanel.add(makeImgToLabel(article3Img));
+        articleGridPanel.add(makeImgToLabel(article4Img));
+    }
+
+    private JLabel makeImgToLabel(ImageIcon img) {
+        JLabel temp = new JLabel(setImageSize(img, 293,293));
+        return temp;
+    }
+
+    private void getHeaderPanel() {
+        getHeaderTopPanel();
+        getHeaderBottomPanel();
+    }
+
+    private void getHeaderTopPanel() {
         getProfilImg();
         getProfilInfo();
+    }
 
-        contentPanel.setBackground(Color.BLACK);
-        mainPanel.add(headerPanel, BorderLayout.NORTH);
-        mainPanel.add(contentPanel, BorderLayout.CENTER);
+    private void getHeaderBottomPanel() {
+        Border left20 = new EmptyBorder(0,20,0,0);
+        JLabel highlightLabel = new JLabel(setImageSize(newHighLightImg, 115,130));
+        highlightLabel.setBorder(new CompoundBorder(highlightLabel.getBorder(), left20));
+        headerBottomPanel.add(highlightLabel);
     }
 
     private void getProfilImg() {
@@ -99,24 +206,144 @@ public class EachUserBoard extends JPanel {
     private void getProfilInfo(){
         int profilInfoWidth = profilInfoPanel.getWidth();
         Border profilPadding20 = new EmptyBorder(0,0,20,0);
-        profilInfoPanel.setBackground(Color.CYAN);
+        Border profilPadding44 = new EmptyBorder(0,0,44,0);
+
+        profilInfoPanel.setBackground(bgColor);
+
+        //top
+        JPanel topWrapper = new JPanel(new BorderLayout());
+        topWrapper.setPreferredSize(new Dimension(profilInfoWidth, 68));
+        topWrapper.setBackground(bgColor);
+        JPanel tempTop = new JPanel(new FlowLayout());
+        tempTop.setPreferredSize(new Dimension(profilInfoWidth, 20));
+        tempTop.setBackground(bgColor);
 
         profilInfoTopPanel.setPreferredSize(new Dimension(profilInfoWidth, 68));
         profilInfoTopPanel.setBorder(new CompoundBorder(profilInfoTopPanel.getBorder(), profilPadding20));
-        profilInfoTopPanel.setBackground(Color.pink);
+        profilInfoTopPanel.setBackground(bgColor);
+        getProfilInfoTop();
+
+        topWrapper.add(tempTop, BorderLayout.NORTH);
+        topWrapper.add(profilInfoTopPanel, BorderLayout.CENTER);
+
+        //center
+        JPanel centerWrapper = new JPanel(new BorderLayout());
+        centerWrapper.setPreferredSize(new Dimension(profilInfoWidth, 44));
+        centerWrapper.setBackground(bgColor);
+        JPanel tempCenter = new JPanel(new FlowLayout());
+        tempCenter.setPreferredSize(new Dimension(profilInfoWidth, 20));
+        tempCenter.setBackground(bgColor);
 
         profilInfoCenterPanel.setPreferredSize(new Dimension(profilInfoWidth, 44));
         profilInfoCenterPanel.setBorder(new CompoundBorder(profilInfoCenterPanel.getBorder(), profilPadding20));
-        profilInfoCenterPanel.setBackground(Color.orange);
+        profilInfoCenterPanel.setBackground(bgColor);
+        getProfilInfoCenter();
 
-        profilInfoBottomPanel.setPreferredSize(new Dimension(profilInfoWidth, 97));
-        profilInfoBottomPanel.setBackground(Color.BLUE);
+        centerWrapper.add(tempCenter, BorderLayout.NORTH);
+        centerWrapper.add(profilInfoCenterPanel, BorderLayout.CENTER);
 
-        profilInfoPanel.add(profilInfoTopPanel, BorderLayout.NORTH);
-        profilInfoPanel.add(profilInfoCenterPanel, BorderLayout.CENTER);
+        //bottom
+        profilInfoBottomPanel.setPreferredSize(new Dimension(profilInfoWidth, 92));
+        profilInfoBottomPanel.setBackground(bgColor);
+        profilInfoBottomPanel.setBorder(new CompoundBorder(profilInfoBottomPanel.getBorder(), profilPadding44));
+        getProfilInfoBottom();
+
+        profilInfoPanel.add(topWrapper, BorderLayout.NORTH);
+        profilInfoPanel.add(centerWrapper, BorderLayout.CENTER);
         profilInfoPanel.add(profilInfoBottomPanel, BorderLayout.SOUTH);
 
         headerTopPanel.add(profilInfoPanel, BorderLayout.CENTER);
+    }
+
+    private void getProfilInfoTop() {
+        userIdLabel = new JLabel(userId);
+        userIdLabel.setFont(new Font(userIdLabel.getFont().getName(), Font.PLAIN, 28));
+
+        editProfil = new JLabel(setImageSize(editProfilImg, 94,30));
+        Border leftMargin20 = new EmptyBorder(0,20,0,0);
+        editProfil.setBorder(new CompoundBorder(editProfil.getBorder(), leftMargin20));
+
+        setup = new JLabel(setImageSize(setupImg, 24,24));
+        Border margin8 = new EmptyBorder(8,8,8,8);
+        setup.setBorder(new CompoundBorder(setup.getBorder(), margin8));
+
+        profilInfoTopPanel.add(userIdLabel);
+        profilInfoTopPanel.add(editProfil);
+        profilInfoTopPanel.add(setup);
+    }
+
+    private void getProfilInfoCenter() {
+        Border right40 = new EmptyBorder(0,0,0,40);
+
+        articleLabel = new JLabel("게시물 ");
+        articleNumLabel = new JLabel(Integer.toString(articleNum));
+
+        articleLabel.setFont(new Font(articleLabel.getFont().getName(), Font.PLAIN, 16));
+        articleNumLabel.setFont(new Font(articleLabel.getFont().getName(), Font.PLAIN, 16));
+
+        articleLabel.setBackground(bgColor);
+        articleNumLabel.setBackground(bgColor);
+
+        articleNumPanel.add(articleLabel, BorderLayout.CENTER);
+        articleNumPanel.add(articleNumLabel, BorderLayout.EAST);
+        articleNumPanel.setBackground(bgColor);
+        articleNumPanel.setBorder(new CompoundBorder(articleNumPanel.getBorder(), right40));
+
+        followerLabel = new JLabel("팔로워 ");
+        followerNumLabel = new JLabel(Integer.toString(followerNum));
+
+        followerLabel.setFont(new Font(followerLabel.getFont().getName(), Font.PLAIN, 16));
+        followerNumLabel.setFont(new Font(followerNumLabel.getFont().getName(), Font.PLAIN, 16));
+
+        followerLabel.setBackground(bgColor);
+        followerNumLabel.setBackground(bgColor);
+
+        followerNumPanel.add(followerLabel, BorderLayout.CENTER);
+        followerNumPanel.add(followerNumLabel, BorderLayout.EAST);
+        followerNumPanel.setBackground(bgColor);
+        followerNumPanel.setBorder(new CompoundBorder(followerNumPanel.getBorder(), right40));
+
+        followLabel = new JLabel("팔로워 ");
+        followNumLabel = new JLabel(Integer.toString(followNum));
+
+        followLabel.setFont(new Font(followLabel.getFont().getName(), Font.PLAIN, 16));
+        followNumLabel.setFont(new Font(followNumLabel.getFont().getName(), Font.PLAIN, 16));
+
+        followLabel.setBackground(bgColor);
+        followNumLabel.setBackground(bgColor);
+
+        followNumPanel.add(followLabel, BorderLayout.CENTER);
+        followNumPanel.add(followNumLabel, BorderLayout.EAST);
+        followNumPanel.setBackground(bgColor);
+        followNumPanel.setBorder(new CompoundBorder(followNumPanel.getBorder(), right40));
+
+        profilInfoCenterPanel.add(articleNumPanel);
+        profilInfoCenterPanel.add(followerNumPanel);
+        profilInfoCenterPanel.add(followNumPanel);
+
+    }
+
+    private void getProfilInfoBottom(){
+        int profilInfoWidth = profilInfoBottomPanel.getWidth();
+
+        JPanel tempTop = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        JPanel tempBottom = new JPanel(new FlowLayout(FlowLayout.LEFT));
+
+        tempTop.setPreferredSize(new Dimension(profilInfoWidth, 24));
+        tempBottom.setPreferredSize(new Dimension(profilInfoWidth, 24));
+        tempTop.setBackground(bgColor);
+        tempBottom.setBackground(bgColor);
+
+        userNameLabel = new JLabel(userName);
+        userMessageLabel = new JLabel(userMessage);
+        userNameLabel.setFont(new Font(userNameLabel.getFont().getName(), Font.BOLD, 16));
+        userMessageLabel.setFont(new Font(userNameLabel.getFont().getName(), Font.PLAIN, 16));
+
+        tempTop.add(userNameLabel);
+        tempBottom.add(userMessageLabel);
+
+        profilInfoBottomPanel.add(tempTop, BorderLayout.NORTH);
+        profilInfoBottomPanel.add(tempBottom, BorderLayout.SOUTH);
     }
 
     private ImageIcon setImageSize(ImageIcon imgIcon, int width, int height) {

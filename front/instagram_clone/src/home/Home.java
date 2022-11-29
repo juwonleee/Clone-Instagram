@@ -83,6 +83,9 @@ public class Home extends JFrame {
         tempEast = new JPanel(new BorderLayout());
         center = new JPanel();
 
+        tempWest.setBackground(Color.WHITE);
+        tempEast.setBackground(Color.WHITE);
+
         tempWest.setPreferredSize(new Dimension(250, allHeight));
         tempEast.setPreferredSize(new Dimension(250, allHeight));
 
@@ -93,6 +96,7 @@ public class Home extends JFrame {
         mainScroll = new JScrollPane(center, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         mainScroll.setBorder(new EmptyBorder(0,0,0,0));
         mainScroll.getVerticalScrollBar().setUI(new MyScrollBarUI());
+        mainScroll.getVerticalScrollBar().setUnitIncrement(16);
 
         mainPanel.add(tempWest, BorderLayout.WEST);
         mainPanel.add(tempEast, BorderLayout.EAST);
