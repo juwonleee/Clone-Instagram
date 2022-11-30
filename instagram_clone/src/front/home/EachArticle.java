@@ -143,6 +143,8 @@ public class EachArticle extends JPanel {
         topIconPanel.add(commentLabel);
         topIconPanel.add(messageLabel);
 
+
+
         bottom_top_icon_panel.setBackground(Color.WHITE);
         bottom_top_icon_panel.add(topIconPanel, BorderLayout.CENTER);
 
@@ -272,5 +274,7 @@ public class EachArticle extends JPanel {
             }
         });
     }
+
+
 
 }
