@@ -10,8 +10,11 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 public class Home extends JFrame {
+
+    Color bgColor = new Color(250,250,250);
 
     Toolkit toolkit = Toolkit.getDefaultToolkit();
     Dimension screenSize = toolkit.getScreenSize();
@@ -61,11 +64,22 @@ public class Home extends JFrame {
     JPanel tempEast;
     JPanel center;
 
+    //게시물 클릭 시
+    JPanel tempTop;
+    JPanel tempBottom;
+    JPanel tempCenter;
+
+    ArrayList<Integer> articleNums = new ArrayList<Integer>();
+
     public Home() {
         setLayout(new BorderLayout());
         setSize(new Dimension(1265, allHeight));
         setIconImage(ICON.getImage());
         setResizable(false);
+
+        articleNums.add(1);
+        articleNums.add(2);
+        articleNums.add(3);
 
         //여기서 함수 실행
         setMenuPanel();
@@ -217,8 +231,6 @@ public class Home extends JFrame {
 
         setMenuButtonListener();
     }
-
-
 
     private void setMenuButtonListener() {
 

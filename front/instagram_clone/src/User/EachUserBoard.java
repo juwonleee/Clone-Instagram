@@ -1,5 +1,6 @@
 package User;
 
+import home.EachBoard;
 import home.MyScrollBarUI;
 
 import javax.swing.*;
@@ -8,6 +9,9 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 public class EachUserBoard extends JPanel {
 
@@ -55,6 +59,9 @@ public class EachUserBoard extends JPanel {
     ImageIcon article3Img = new ImageIcon("front/instagram_clone/image/article_3.jpg");
     ImageIcon article4Img = new ImageIcon("front/instagram_clone/image/article_4.jpg");
 
+    ArrayList<ImageIcon> boardImgs = new ArrayList<ImageIcon>();
+    ArrayList<String> boardLabels = new ArrayList<String>();
+
     //프로필인포탑
     JLabel userIdLabel;
     JLabel editProfil;
@@ -75,6 +82,16 @@ public class EachUserBoard extends JPanel {
     JLabel userNameLabel;
     JLabel userMessageLabel;
 
+    //게시물 클릭 시
+    JPanel tempTop;
+    JPanel tempBottom;
+    JPanel tempCenter;
+
+    //팔로우 팔로워
+    JPanel followerPanel;
+    JPanel followPanel;
+
+    Boolean isFollow = false;
 
     public EachUserBoard(int id) {
         this.userIdx = id;
@@ -89,6 +106,8 @@ public class EachUserBoard extends JPanel {
         //setPreferredSize(new Dimension(1020, screenSize.height));
         setBackground(new Color(250,250,250));
 
+        resourceList();
+
         tempLeftPanel.setPreferredSize(new Dimension(22, screenSize.height));
         tempRightPanel.setPreferredSize(new Dimension(23, screenSize.height));
 
@@ -102,6 +121,7 @@ public class EachUserBoard extends JPanel {
         makeHeader();
         makeContent();
         makeGrid();
+        makeClick();
 
         profilScroll = new JScrollPane(mainPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         profilScroll.setPreferredSize(new Dimension(975,screenSize.height - 100));
@@ -113,6 +133,18 @@ public class EachUserBoard extends JPanel {
         add(tempLeftPanel, BorderLayout.WEST);
         add(tempRightPanel, BorderLayout.EAST);
 
+    }
+
+    private void resourceList() {
+        boardImgs.add(article1Img);
+        boardImgs.add(article2Img);
+        boardImgs.add(article3Img);
+        boardImgs.add(article4Img);
+
+        boardLabels.add("1");
+        boardLabels.add("2");
+        boardLabels.add("3");
+        boardLabels.add("4");
     }
 
     private void makeHeader() {
@@ -155,6 +187,7 @@ public class EachUserBoard extends JPanel {
     private void makeGrid() {
         JPanel tempGridPanel = new JPanel(new FlowLayout());
         Border bottom87 = new EmptyBorder(0,0,87,0);
+        tempGridPanel.setBackground(bgColor);
 
         articleGridPanel = new JPanel(new GridLayout(0, 3, 28, 28));
         articleGridPanel.setBackground(bgColor);
@@ -162,19 +195,60 @@ public class EachUserBoard extends JPanel {
         getArticles();
         tempGridPanel.add(articleGridPanel);
 
+        makeFollowPanel(1);
+
         mainPanel.add(tempGridPanel, BorderLayout.SOUTH);
     }
 
     private void getArticles() {
-        articleGridPanel.add(makeImgToLabel(article1Img));
-        articleGridPanel.add(makeImgToLabel(article2Img));
-        articleGridPanel.add(makeImgToLabel(article3Img));
-        articleGridPanel.add(makeImgToLabel(article4Img));
+        for (int i=0;i< boardImgs.size();i++) {
+            articleGridPanel.add(makeImgToGrid(boardImgs.get(i), boardLabels.get(i)));
+        }
+//        articleGridPanel.add(makeImgToGrid(boardImgs.get(0), boardLabels.get(0)));
+//        articleGridPanel.add(makeImgToGrid(boardImgs.get(1), boardLabels.get(1)));
+//        articleGridPanel.add(makeImgToGrid(boardImgs.get(2), boardLabels.get(2)));
+//        articleGridPanel.add(makeImgToGrid(boardImgs.get(3), boardLabels.get(3)));
     }
 
-    private JLabel makeImgToLabel(ImageIcon img) {
+    private JLabel makeImgToGrid(ImageIcon img, String label) {
         JLabel temp = new JLabel(setImageSize(img, 293,293));
+        temp.addMouseListener(new BoardListener());
+        temp.setToolTipText(label);
         return temp;
+    }
+
+    private void makeFollowPanel(int userIdx) {
+        Border bottom87 = new EmptyBorder(0,0,87,0);
+
+        followPanel = new JPanel(new BorderLayout());
+        followPanel.setBorder(new CompoundBorder(followPanel.getBorder(), bottom87));
+
+        JPanel tempLeft = new JPanel(new FlowLayout());
+        tempLeft.setBackground(Color.BLUE);
+        JPanel tempRight = new JPanel(new FlowLayout());
+        tempRight.setBackground(Color.BLUE);
+        JPanel tempCenter = new JPanel();
+        tempCenter.setLayout(new BoxLayout(tempCenter, BoxLayout.Y_AXIS));
+        tempCenter.setPreferredSize(new Dimension(300, 300));
+
+        JLabel name1Label = new JLabel("론");
+        JLabel name2Label = new JLabel("론");
+        JLabel name3Label = new JLabel("론");
+        JLabel name4Label = new JLabel("론");
+        JLabel name5Label = new JLabel("론");
+        JLabel name6Label = new JLabel("론");
+
+        tempCenter.add(name1Label);
+        tempCenter.add(name2Label);
+        tempCenter.add(name3Label);
+        tempCenter.add(name4Label);
+        tempCenter.add(name5Label);
+        tempCenter.add(name6Label);
+
+        followPanel.add(tempLeft, BorderLayout.WEST);
+        followPanel.add(tempRight, BorderLayout.EAST);
+        followPanel.add(tempCenter, BorderLayout.CENTER);
+
     }
 
     private void getHeaderPanel() {
@@ -320,7 +394,42 @@ public class EachUserBoard extends JPanel {
         profilInfoCenterPanel.add(articleNumPanel);
         profilInfoCenterPanel.add(followerNumPanel);
         profilInfoCenterPanel.add(followNumPanel);
+    }
 
+    private void makeClick() {
+        followNumPanel.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (!isFollow) {
+                    mainPanel.remove(articleGridPanel);
+                    mainPanel.add(followPanel, BorderLayout.SOUTH);
+                } else {
+                    mainPanel.remove(followPanel);
+                    mainPanel.add(articleGridPanel, BorderLayout.SOUTH);
+                }
+                isFollow = !isFollow;
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
     }
 
     private void getProfilInfoBottom(){
@@ -353,4 +462,95 @@ public class EachUserBoard extends JPanel {
 
         return updateIcon;
     }
+
+    private class BoardListener implements MouseListener {
+        JLabel clicked;
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            clicked = (JLabel) e.getSource();
+
+            remove(profilScroll);
+            remove(tempRightPanel);
+            remove(tempLeftPanel);
+
+            tempTop = new JPanel(new BorderLayout());
+            tempTop.setBackground(bgColor);
+            tempTop.setPreferredSize(new Dimension(getWidth(), 200));
+            tempTop.addMouseListener(new TempListener());
+
+            tempBottom = new JPanel(new BorderLayout());
+            tempBottom.setBackground(bgColor);
+            tempBottom.setPreferredSize(new Dimension(getWidth(), 200));
+            tempBottom.addMouseListener(new TempListener());
+
+            tempCenter = new EachBoard((ImageIcon) clicked.getIcon(), Integer.parseInt(clicked.getToolTipText()));
+
+            add(tempTop, BorderLayout.NORTH);
+            add(tempBottom, BorderLayout.SOUTH);
+            add(tempCenter, BorderLayout.CENTER);
+
+            revalidate();
+            repaint();
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+            JLabel label = (JLabel) e.getSource();
+            label.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+
+        }
+    }
+
+    private class TempListener implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            remove(tempTop);
+            remove(tempBottom);
+            remove(tempCenter);
+
+            add(profilScroll, BorderLayout.CENTER);
+            add(tempRightPanel, BorderLayout.EAST);
+            add(tempLeftPanel, BorderLayout.WEST);
+
+            revalidate();
+            repaint();
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+
+        }
+    }
 }
+
