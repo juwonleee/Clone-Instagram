@@ -1,11 +1,17 @@
 package front.home;
 
+import com.sun.tools.javac.Main;
+import front.util.UserDB;
+import front.util.UserDao;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class Signup extends JFrame {
+
+    UserDao userDao = new UserDao();
 
     Toolkit toolkit = Toolkit.getDefaultToolkit();
     Dimension screenSize = toolkit.getScreenSize();
@@ -94,6 +100,18 @@ public class Signup extends JFrame {
         bt_signupsignup.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                UserDB userDB = new UserDB();
+
+                userDao.getConnection();
+                userDB.setEmail(userEmailField.getText());
+                userDB.setName(userNameField.getText());
+                userDB.setNickName(userNickNameField.getText());
+                userDB.setPwd(userPwdField.getText());
+                userDB.setProfileImgURL("");
+                userDao.addUser(userDB);
+
+                dispose();
+                new Home();
 
             }
 
@@ -143,7 +161,7 @@ public class Signup extends JFrame {
         userNameField.setForeground(Color.BLACK);
         add(userNameField);
 
-
+        // 사용자 이름
         userNickNameField = new HintTextField("사용자 이름");
         userNickNameField.setBounds(488,364,250,30);
         userNickNameField.setOpaque(true);
@@ -158,7 +176,6 @@ public class Signup extends JFrame {
         userPwdField.setBackground(color);
         userPwdField.setForeground(Color.BLACK);
         add(userPwdField);
-
 
         setVisible(true);//창이 보이게
 
