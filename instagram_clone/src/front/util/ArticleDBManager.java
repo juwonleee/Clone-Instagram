@@ -13,8 +13,8 @@ public class ArticleDBManager {
      */
 
     public ArticleDBManager(){
-        String url = "jdbc:mysql://localhost:3306/madang";
-        String userid = "madang";
+        String url = "jdbc:mysql://localhost:3306/clone-instagram";
+        String userid = "root";
         String pwd = "1234";
 
         try{
@@ -28,8 +28,8 @@ public class ArticleDBManager {
 
     public ArticleDBManager(int cur_userIdx){
         setCurrentUser(cur_userIdx);
-        String url = "jdbc:mysql://localhost:3306/madang";
-        String userid = "madang";
+        String url = "jdbc:mysql://localhost:3306/clone-instagram";
+        String userid = "root";
         String pwd = "1234";
 
         try{

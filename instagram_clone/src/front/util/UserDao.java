@@ -15,8 +15,8 @@ public class UserDao {
      * Make connection to the DB
      */
     public Connection getConnection(){
-        String url = "jdbc:mysql://localhost:3306/madang";
-        String userid = "madang";
+        String url = "jdbc:mysql://localhost:3306/clone-instagram";
+        String userid = "root";
         String pwd = "1234";
         Connection conn = null;
 

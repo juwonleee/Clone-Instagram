@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="Clone-Instargram" uuid="a76b54e8-8776-4ab8-938d-2bdefcea6722">
+    <data-source source="LOCAL" name="@localhost" uuid="08f2e97d-7396-49da-aee7-5859b1f43061">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
