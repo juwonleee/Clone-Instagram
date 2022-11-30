@@ -6,13 +6,12 @@ import java.util.ArrayList;
 public class ArticleDBManager {
     private Connection con;
     private Statement stat;
-
-    private int cur_userIdx = 1;
-
+    private static int cur_userIdx = -1;
 
     /**
      * Make connection to the DB
      */
+
     public ArticleDBManager(){
         String url = "jdbc:mysql://localhost:3306/madang";
         String userid = "madang";
@@ -27,6 +26,32 @@ public class ArticleDBManager {
         }
     }
 
+    public ArticleDBManager(int cur_userIdx){
+        setCurrentUser(cur_userIdx);
+        String url = "jdbc:mysql://localhost:3306/madang";
+        String userid = "madang";
+        String pwd = "1234";
+
+        try{
+            con = DriverManager.getConnection(url, userid, pwd);
+            stat = con.createStatement();
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    public static void setCurrentUser(int idx){
+        cur_userIdx = idx;
+    }
+
+    public static int getCurrentUserIdx(){
+        return cur_userIdx;
+    }
+
+    public String getCurrentUsername(){
+        return getUsername(cur_userIdx);
+    }
     /*
     필요한 기능:
         load article list
@@ -77,7 +102,7 @@ public class ArticleDBManager {
      */
     public ArrayList<CommentDB> getCommentList(int articleId){
         ArrayList<CommentDB> list = new ArrayList<>();
-        String query = "select * from comment where postIdx=" + "\"" + articleId + "\"" + " order by createdAt";
+        String query = "select * from comment where postIdx=" + "\"" + articleId + "\"" + " order by createdAt desc";
 
         try{
             stat = con.createStatement();
@@ -102,6 +127,7 @@ public class ArticleDBManager {
     /**
      * Add comment to DB
      * if msg = "@user ...", then add the user to tagUser
+     * Need to execute setCurrentUser(idx) first before the execution
      */
     public void addComment(String msg, ArticleDB article){
         if (msg.startsWith("@")){
@@ -133,8 +159,13 @@ public class ArticleDBManager {
     //...댓글 하트 기능 추가DB
 
 
-    private String getUsername(int userIdx){
-        String query = "select name from user where userIdx=" + userIdx;
+    /**
+     * Get username from the given userIdx
+     * @param userIdx
+     * @return username
+     */
+    public String getUsername(int userIdx){
+        String query = "select nickname from user where userIdx=" + userIdx;
 
         try{
             ResultSet result = stat.executeQuery(query);
@@ -149,8 +180,13 @@ public class ArticleDBManager {
         return null;
     }
 
-    private int getUserIdx(String username){
-        String query = "select userIdx from user where name=" + "\"" + username + "\"";
+    /**
+     * Get userIdx from the given username
+     * @param username
+     * @return userIdx of the user
+     */
+    public int getUserIdx(String username){
+        String query = "select userIdx from user where nickname=" + "\"" + username + "\"";
 
         try{
             ResultSet result = stat.executeQuery(query);
@@ -164,6 +200,4 @@ public class ArticleDBManager {
 
         return -1;
     }
-
-
 }
