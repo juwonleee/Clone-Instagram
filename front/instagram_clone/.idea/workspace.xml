@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fa3f0fa6-f168-4825-af8d-e0d793fc2110" name="Changes" comment="풀 plz" />
+    <list default="true" id="6d87b216-97ff-402d-9f8a-41acc57789f6" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
@@ -13,7 +20,7 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2IA6lr2pQPXpwl3qp02xsVj2Qsz" />
+  <component name="ProjectId" id="2Hwh5jLcNv53o4LjxCynx7wylNJ" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -24,19 +31,20 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/82109/2022-2 Database/Clone-Instagram",
+    "last_opened_file_path": "C:/Users/kaj12/Desktop/DB_instagram",
     "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.17",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "android.project.structure"
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
   }
 }]]></component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\82109\2022-2 Database\Clone-Instagram\front\instagram_clone\image" />
-    </key>
-  </component>
   <component name="RunManager" selected="Application.MainRun">
+    <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="App" />
+      <module name="instagram_clone" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="HomeFront" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="home.HomeFront" />
       <module name="instagram_clone" />
@@ -67,20 +75,26 @@
       <list>
         <item itemvalue="Application.MainRun" />
         <item itemvalue="Application.HomeFront" />
+        <item itemvalue="Application.App" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="fa3f0fa6-f168-4825-af8d-e0d793fc2110" name="Changes" comment="" />
-      <created>1669612195247</created>
+      <changelist id="6d87b216-97ff-402d-9f8a-41acc57789f6" name="Changes" comment="" />
+      <created>1669201873763</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1669612195247</updated>
-      <workItem from="1669612196785" duration="1725000" />
-      <workItem from="1669616372741" duration="3729000" />
-      <workItem from="1669633035330" duration="2353000" />
+      <updated>1669201873763</updated>
+      <workItem from="1669201874972" duration="410000" />
+      <workItem from="1669204033380" duration="13614000" />
+      <workItem from="1669271334707" duration="20545000" />
+      <workItem from="1669303806967" duration="5007000" />
+      <workItem from="1669351317626" duration="4751000" />
+      <workItem from="1669538242996" duration="355000" />
+      <workItem from="1669607793306" duration="12037000" />
+      <workItem from="1669630069773" duration="4952000" />
     </task>
     <servers />
   </component>
@@ -97,9 +111,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand />
-    <select />
   </component>
 </project>
